@@ -1,5 +1,6 @@
+require("dotenv").config();
 const express = require("express");
-const stripe = require("stripe");
+const stripe = require("stripe")(`${process.env.STRIPE_SECRET}`);
 const { json } = require("body-parser");
 const port = 4000;
 
