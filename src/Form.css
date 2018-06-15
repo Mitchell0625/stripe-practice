@@ -1,9 +1,11 @@
 .form-page {
   width: 60vw;
   margin: 20px auto;
-  border: 1px solid #333;
-  border-radius: 7px;
+  border: 1px solid #fff;
+  border-radius: 2px;
   background-color: #fff;
+  box-shadow: 14px 10px 5px rgb(89, 46, 218);
+  padding-bottom: 30px;
 }
 
 form {
@@ -23,8 +25,24 @@ form {
   margin: 0px auto;
   padding: 20px;
 }
-
+.form-text label {
+  margin: 20px;
+  width: 60px;
+}
 .form-text input {
   border: none;
   font-size: 20px;
+  flex-grow: 1;
+}
+
+.form-outer button {
+  padding: 10px 30px;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: greenyellow;
+  border-radius: 4px;
+  border: 0px solid rgb(138, 218, 19);
+  box-shadow: 0px 5px rgb(138, 218, 19);
 }
