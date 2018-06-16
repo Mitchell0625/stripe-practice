@@ -1,30 +1,36 @@
 import React, { Component } from "react";
 import "./Form.css";
 import axios from "axios";
+import StripeCheckout from "react-stripe-checkout";
 
 class Form extends Component {
-  state = {
-    name: "",
-    address: "",
-    city: "",
-    st: "",
-    zip: 0,
-    amount: 5
-  };
+  constructor() {
+    super();
 
+    this.state = {
+      name: "",
+      address: "",
+      city: "",
+      st: "",
+      zip: 0,
+      amount: 5
+    };
+    this.handleCharge = this.handleCharge.bind(this);
+  }
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleCharge = () => {
+  handleCharge = token => {
     const { name, amount } = this.state;
     axios
-      .post("api/payment", { name, amount })
+      .post("/api/payment", { name, amount, stripeToken: token })
       .then(resp => {
-        console.log(resp.data);
+        console.log(resp);
       })
       .catch(console.log);
   };
+
   render() {
     return (
       <div className="form-outer">
@@ -77,8 +83,12 @@ class Form extends Component {
             />
           </div>
         </div>
-        <button onClick={() => this.handleCharge()}>Submit</button>
-        {/* </form> */}
+        {/* <button onClick={() => this.handleCharge()}>Submit</button> */}
+        <StripeCheckout
+          token={this.handleCharge}
+          amount={this.state.amount}
+          stripeKey="pk_test_85yS6yY0tZc3mAZgdIoLrZlk"
+        />
       </div>
     );
   }

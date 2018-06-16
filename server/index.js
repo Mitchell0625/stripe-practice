@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const stripe = require("stripe")(`${process.env.STRIPE_SECRET}`);
+const stripe = require("stripe")(`${process.env.REACT_APP_STRIPE_SECRET}`);
 const { json } = require("body-parser");
 const massive = require("massive");
 const session = require("express-session");
@@ -8,7 +8,7 @@ const port = 4000;
 
 const app = express();
 
-const sc = require("./stripe_controller.js");
+const { makeCharge } = require(`${__dirname}/stripe_controller`);
 
 app.use(json());
 app.use(
@@ -29,7 +29,7 @@ massive(process.env.CONNECTION_STRING)
   .catch(console.log);
 
 //Stripe endpoint
-app.post(`/api/payment`, sc.makeCharge);
+app.post(`/api/payment`, makeCharge);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
