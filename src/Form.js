@@ -23,8 +23,10 @@ class Form extends Component {
 
   handleCharge = token => {
     const { name, amount } = this.state;
+    let stripeToken = token;
+    console.log("hit handleCharge", name, amount);
     axios
-      .post("/api/payment", { name, amount, stripeToken: token })
+      .post("/card/payment", { name, amount, stripeToken })
       .then(resp => {
         console.log(resp);
       })

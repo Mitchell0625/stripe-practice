@@ -11,6 +11,7 @@ const app = express();
 const { makeCharge } = require(`${__dirname}/stripe_controller`);
 
 app.use(json());
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -29,7 +30,7 @@ massive(process.env.CONNECTION_STRING)
   .catch(console.log);
 
 //Stripe endpoint
-app.post(`/api/payment`, makeCharge);
+app.post(`/card/payment`, makeCharge);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
