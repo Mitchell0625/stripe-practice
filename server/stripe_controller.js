@@ -1,3 +1,5 @@
+const stripe = require("stripe")(`${process.env.REACT_APP_STRIPE_SECRET}`);
+
 module.exports = {
   makeCharge: (req, res) => {
     const dbInstance = req.app.get("db");

@@ -37,7 +37,6 @@ class Form extends Component {
     return (
       <div className="form-outer">
         <div className="form-page">
-          {/* <form onSubmit={this.handleCharge}> */}
           <div className="form-text">
             <label>Name</label>
             <input
@@ -85,10 +84,9 @@ class Form extends Component {
             />
           </div>
         </div>
-        {/* <button onClick={() => this.handleCharge()}>Submit</button> */}
         <StripeCheckout
           token={this.handleCharge}
-          amount={this.state.amount}
+          amount={this.state.amount * 100}
           stripeKey="pk_test_85yS6yY0tZc3mAZgdIoLrZlk"
         />
       </div>

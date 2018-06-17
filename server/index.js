@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const stripe = require("stripe")(`${process.env.REACT_APP_STRIPE_SECRET}`);
+
 const { json } = require("body-parser");
 const massive = require("massive");
 const session = require("express-session");
